@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+#homeLink{
+    background-color:brown;
+    color:whitesmoke;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-block-start:double;
+    border-inline-start-width:medium;
+    border-radius:10px;
+}

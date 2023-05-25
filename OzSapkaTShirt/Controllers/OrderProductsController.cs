@@ -33,7 +33,7 @@ namespace OzSapkaTShirt.Controllers
             
 
 
-            var applicationContext = _context.OrderProducts.Where(o => o.Order.UserId == userId).Include(o => o.Order).Include(o => o.Product);
+            var applicationContext = _context.OrderProducts.Where(o => o.Order.UserId == userId&&o.Order.Status==0).Include(o => o.Order).Include(o => o.Product);
             return View(await applicationContext.ToListAsync());
         }
 
