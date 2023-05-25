@@ -67,7 +67,7 @@
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
                 @Html.ActionLink("Details", "Details", new {  id=item.Order.Id }) |
                 @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                    <input style="background-color:red;color:whitesmoke;font-weight:bold" type="button" value="X" onclick="AddToBasket(@item.ProductId.ToString(),-Number(document.getElementsByClassName(@item.ProductId.ToString())[1].innerHTML))" />
+                    <input  style="background-color:red;color:whitesmoke;font-weight:bold;border-radius:10px" type="button" value="X" onclick="AddToBasket(@item.ProductId.ToString(),-Number(document.getElementsByClassName(@item.ProductId.ToString())[1].innerHTML))" />
             </td>
         </tr>
             
@@ -96,7 +96,16 @@
         </tr>
     </tbody>
 </table>
-
+<div id="addOrder">
+    @if (!(Model.Any(o => o.Order != null)))
+    {
+        <a id="homeLink"href="Home/Index">Sepet Boş Ürün ekleyiniz</a>
+    }
+    else
+    {
+        
+    }
+</div>
 
     <script>
     $("#basketCount").html(@Model.Sum(o=>o.Quantity))
@@ -104,33 +113,56 @@
             var basketCount = 0;
             var i;
             if(data==null)
-            {
-            basketCount = 0;
-        }
-        else{
-            for (i = 0; i < data.orderProducts.length; i++) {
-            basketCount = basketCount + data.orderProducts[i].quantity;
+                {
+                basketCount = 0;
+                }
+            else
+                {
+                for (i = 0; i < data.orderProducts.length; i++) {
+                basketCount = basketCount + data.orderProducts[i].quantity;
                 console.log(data.orderProducts[i].quantity)
+                }
             }
+            if(basketCount==0)
+            {
+            //alert("çalıştı");
+            var goHome=document.createElement("a");
+            goHome.textContent="Sepet Boş Ürün Ekleyiniz";
+            goHome.href="Home/Index";
+            goHome.id = "homeLink"
+            var container = document.getElementById("addOrder");
+            container.innerHTML="";
+            container.appendChild(goHome);//addOrder id li elementin içine oluşturulan goHome elementi eklenir
             }
+            //else{
+            //var goHome = document.createElement("a");
+            //goHome.textContent = "Siparişleri Onayla";
+            //goHome.href = "Home/Index";
+            //var container = document.getElementById("addOrder");
+            //container.innerHTML = "";
+            //container.appendChild(goHome);//addOrder id li elementin içine oluşturulan goHome elementi eklenir
+            //}
             $("#basketCount").html(basketCount)
             
         }
-    function AddToBasket(productId,  deger) {
+    function AddToBasket(productId,  quantites) {
 
-        $.post("@Url.Action("UpDateBasket","OrderProducts")/" + productId + "?quantity=" + deger, UpDateBasket, "json");
-            //elementQuantity nin 0. indisinde tablo satırı, 1. quantity, 2.indiste ürün fiyatı 3. indiste toplam fiyat bulunmaktadır
-            var elementQuantity = document.getElementsByClassName(productId.toString());
+        $.post("@Url.Action("UpDateBasket","OrderProducts")/" + productId + "?quantity=" + quantites, UpDateBasket, "json");
+            
+        //elementQuantity nin 0. indisinde tablo satırı, 1. quantity, 2.indiste ürün fiyatı 3. indiste toplam fiyat bulunmaktadır
+        var elementQuantity = document.getElementsByClassName(productId.toString());
         var basketTotal = document.getElementById("basketTotal");
-         elementQuantity[1].innerHTML = Number(elementQuantity[1].innerHTML) + deger;
+        elementQuantity[1].innerHTML = Number(elementQuantity[1].innerHTML) + quantites;
         basketTotal.innerHTML = Number(basketTotal.innerHTML) +
-            deger * Number(elementQuantity[2].innerHTML);
+            quantites * Number(elementQuantity[2].innerHTML);
+
+
        if (Number(elementQuantity[1].innerHTML) <= 0) {
                 elementQuantity[0].innerHTML="";
             
             }  
             else{
-            elementQuantity[3].innerHTML = Number(elementQuantity[3].innerHTML) + deger*Number(elementQuantity[2].innerHTML);
+            elementQuantity[3].innerHTML = Number(elementQuantity[3].innerHTML) + quantites * Number(elementQuantity[2].innerHTML);
             }
                     
         }

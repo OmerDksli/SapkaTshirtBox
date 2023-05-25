@@ -9,10 +9,6 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "J:\\ömer dikiişli\\OzSapkaTShirt-master\\OzSapkaTShirt\\wwwroot\\excelFiles\\SehirlerBolgeler.xlsx",
-      "PackagePath": "staticwebassets\\excelFiles\\SehirlerBolgeler.xlsx"
-    },
-    {
       "Id": "J:\\ömer dikiişli\\OzSapkaTShirt-master\\OzSapkaTShirt\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

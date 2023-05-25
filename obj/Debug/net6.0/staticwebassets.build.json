@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "heRhYZFboT8ubs5p0OC23hIFeqIxmcTkvvfmbaPQiX0=",
+  "Hash": "DqytRRi75IRq71SA5I1Z3dRrmmUdOImsNi+jRLNabcc=",
   "Source": "OzSapkaTShirt2",
   "BasePath": "_content/OzSapkaTShirt2",
   "Mode": "Default",
@@ -1086,23 +1086,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
-    },
-    {
-      "Identity": "J:\\ömer dikiişli\\OzSapkaTShirt-master\\OzSapkaTShirt\\wwwroot\\excelFiles\\SehirlerBolgeler.xlsx",
-      "SourceId": "OzSapkaTShirt2",
-      "SourceType": "Discovered",
-      "ContentRoot": "J:\\ömer dikiişli\\OzSapkaTShirt-master\\OzSapkaTShirt\\wwwroot\\",
-      "BasePath": "_content/OzSapkaTShirt2",
-      "RelativePath": "excelFiles/SehirlerBolgeler.xlsx",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\excelFiles\\SehirlerBolgeler.xlsx"
     },
     {
       "Identity": "J:\\ömer dikiişli\\OzSapkaTShirt-master\\OzSapkaTShirt\\wwwroot\\favicon.ico",

@@ -278,4 +278,3 @@ J:\ömer dikiişli\OzSapkaTShirt-master\OzSapkaTShirt\obj\Debug\net6.0\refint\Oz
 J:\ömer dikiişli\OzSapkaTShirt-master\OzSapkaTShirt\obj\Debug\net6.0\OzSapkaTShirt2.pdb
 J:\ömer dikiişli\OzSapkaTShirt-master\OzSapkaTShirt\obj\Debug\net6.0\OzSapkaTShirt2.genruntimeconfig.cache
 J:\ömer dikiişli\OzSapkaTShirt-master\OzSapkaTShirt\obj\Debug\net6.0\ref\OzSapkaTShirt2.dll
-J:\ömer dikiişli\OzSapkaTShirt-master\OzSapkaTShirt\bin\Debug\net6.0\ExcelDataReader.dll

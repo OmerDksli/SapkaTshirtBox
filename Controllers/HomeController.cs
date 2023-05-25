@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Security.Claims;
 
 namespace OzSapkaTShirt.Controllers
-{//değişiklşik eklendi
+{
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
