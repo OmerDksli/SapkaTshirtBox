@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace OzSapkaTShirt.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles = "Administrator")] - Furkan Was Here
+    //[Authorize(Roles = "Administrator")]
     public class ProductsController : Controller
     {
         private readonly ApplicationContext _context;

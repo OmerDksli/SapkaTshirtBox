@@ -30,9 +30,6 @@ namespace OzSapkaTShirt.Controllers
         public async Task<IActionResult> Details(string? id)
         {
             ApplicationUser? user;
-            var a = 3;
-
-            a = a / 1000000000;
 
             if (id == null || _userManager.Users == null)
             {
@@ -196,7 +193,7 @@ namespace OzSapkaTShirt.Controllers
             {
                 await _userManager.DeleteAsync(user);
             }
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
         private bool UserExists(string id)
@@ -265,5 +262,6 @@ namespace OzSapkaTShirt.Controllers
             _signInManager.SignOutAsync().Wait();
             return RedirectToAction("Index", "Home");
         }
+        
     }
 }
