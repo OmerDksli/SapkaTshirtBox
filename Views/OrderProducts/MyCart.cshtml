@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewData["Title"] = "MyCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>MyCart</h1>
+
+@using System.Security.Claims
+@model IEnumerable<OzSapkaTShirt.Models.OrderProduct>
+
+
+
+
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Order)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order.User.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr class="@item.ProductId.ToString()">
+                <td>
+                    @if (item.Product.DBImage != null)
+                    {
+                        <img src="data:image/png;base64,@Convert.ToBase64String(item.Product.DBImage)" style="width:100px" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.User.Address)
+                </td>
+                <td> 
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td >
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td >
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                    @Html.ActionLink("Details", "Details", new {  id=item.Order.Id }) |
+                    @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                </td>
+            </tr>
+
+        }
+        <tr style="background-color:black;color:aliceblue">
+            <td>
+                @Html.DisplayNameFor(model => model.Order.TotalPrice);
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+
+            <td id="basketTotal">
+                @if (Model.Any(o => o.Order != null))
+                {
+                    @Model.Where(o=>o.Order.Status==1).FirstOrDefault().Order.TotalPrice;
+                    
+                }
+
+            </td>
+            <td>
+            </td>
+        </tr>
+    </tbody>
+</table>
+@*<div id="addOrder">
+    @if (!(Model.Any(o => o.Order != null)))
+    {
+        <a id="homeLink" href="Home/Index">Sepet Boş Ürün ekleyiniz</a>
+    }
+    else
+    {
+        <a id="homeLink" href="Orders/ConfirmCart/@Model.Where(o=>o.Order.Status==0).FirstOrDefault().Order.Id">Sepeti Onayla</a>
+    }
+</div>
+*@
+
+
+
+

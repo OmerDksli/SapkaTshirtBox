@@ -1,0 +1,37 @@
+﻿
+@model IEnumerable<OzSapkaTShirt.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "Filtering";
+    
+    
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<h1>Filtering</h1>
+<div>
+    <select id="user">
+        
+        @foreach(var item in Model)
+    {
+        <option value="@item.Id">
+        @item.Name
+        </option>
+    }
+    </select><br />
+    <input type="button" value="filtrele" onclick="filterToOrder()" />
+      
+</div>
+
+<script>
+    
+    function filterToOrder() {
+        
+        var id = document.getElementById("user").value;
+        alert(id);
+        $.post("@Url.Action("filterUser","Users")/" + id, userToList, "json");
+       
+
+    }
+    function userToList(data){
+        console.log(data);
+    }
+</script>

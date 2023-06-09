@@ -103,7 +103,7 @@
     }
     else
     {
-        
+        <a id="homeLink" href="Orders/ConfirmCart/@Model.Where(o=>o.Order.Status==0).FirstOrDefault().Order.Id">Sepeti Onayla</a>
     }
 </div>
 
@@ -134,14 +134,7 @@
             container.innerHTML="";
             container.appendChild(goHome);//addOrder id li elementin içine oluşturulan goHome elementi eklenir
             }
-            //else{
-            //var goHome = document.createElement("a");
-            //goHome.textContent = "Siparişleri Onayla";
-            //goHome.href = "Home/Index";
-            //var container = document.getElementById("addOrder");
-            //container.innerHTML = "";
-            //container.appendChild(goHome);//addOrder id li elementin içine oluşturulan goHome elementi eklenir
-            //}
+          
             $("#basketCount").html(basketCount)
             
         }
@@ -153,6 +146,7 @@
         var elementQuantity = document.getElementsByClassName(productId.toString());
         var basketTotal = document.getElementById("basketTotal");
         elementQuantity[1].innerHTML = Number(elementQuantity[1].innerHTML) + quantites;
+       
         basketTotal.innerHTML = Number(basketTotal.innerHTML) +
             quantites * Number(elementQuantity[2].innerHTML);
 

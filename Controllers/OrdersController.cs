@@ -31,8 +31,17 @@ namespace OzSapkaTShirt.Controllers
             string userIdentity = User.FindFirstValue(ClaimTypes.NameIdentifier);
            
 
-            var applicationContext = _context.Orders.Where(o => o.UserId == userIdentity && o.Status == 0);
+            var applicationContext = _context.Orders.Where(o => o.UserId == userIdentity && o.Status == 1);
             return View(await applicationContext.ToListAsync());
+        }
+        public IActionResult ConfirmCart(long id)
+        {
+            string userIdentity = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var order=_context.Orders.Find(id);
+            order.Status = 1;
+            _context.Update(order);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Orders/Details/5
