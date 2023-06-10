@@ -1,0 +1,63 @@
+﻿
+@model IEnumerable<OzSapkaTShirt.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "Filtering";
+    
+    
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<h1>Filtering</h1>
+<div>
+    <select id="user"title="kullanıcılar">
+        
+        @foreach(var item in Model)
+    {
+        <option value="@item.Id">
+        @item.Name
+        </option>
+    }
+    </select><br />
+    <input type="button" value="filtrele" onclick="filterToOrder()" />
+      
+</div>
+@section Scripts{
+
+
+<script>
+        
+    var param={
+            
+            beginTime:"18/05/1993",
+            endTime: "18/05/2023",
+            id: document.getElementById("user").value,
+            orderStatus:1
+    };
+        console.log(param);
+    function filterToOrder() {
+            param.id = document.getElementById("user").value;
+        
+        alert(param.id);
+        $.post("@Url.Action("filterUser","Users")",param, function(data){userToList(data);}, "json");
+       //$.ajax({
+       //         url: '@Url.Action("filterUser","Users")',
+       //         type:'POST',
+       //         dataType:'json',
+       //         data:id,
+       //         succes:function(response){
+       //             alert("post başarılı")
+       //             userToList(response);
+       //         },
+       //         error:function(xhr,status,error){
+       //             console.log("istek başarısız:"+error);
+       //         }
+
+       //});
+
+    }
+    function userToList(data){
+        console.log(data);
+            console.log(param);
+    }
+
+</script>
+}
