@@ -94,11 +94,21 @@ namespace OzSapkaTShirt.Areas.Admin.Controllers
             //            View(await _userManager.Users.Include(u => u.GenderType).Include(u => u.City).OrderBy(u => u.Name).ThenBy(u => u.SurName).ToListAsync()) :
             //            Problem("Entity set 'ApplicationContext.Users'  is null.");
         }
-        public List<Order> filterUser(string id)
+        public ActionResult filterUser(FilterParam param)
         {
             //kullanıcıya ait tüm siparişleri listeler
-            var filterUser = _context.Orders.Where(o => o.UserId == id).Include(o => o.User).Include(o => o.OrderProducts).ToList();
-            return filterUser;
+            var filterUser = _context.Orders.Where(o => o.UserId == param.id).Include(o => o.User).Include(o => o.OrderProducts).ToList();
+            return Json(filterUser);
+        }
+        public class FilterParam
+        {
+            
+            public DateTime? beginTime { get; set; }
+            public DateTime? endTime { get; set;}
+            public string id { get; set; }
+            public byte orderStatus { get; set; }
+
         }
     }
+     
 }

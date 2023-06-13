@@ -8,7 +8,8 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <h1>Filtering</h1>
 <div>
-    <select id="user">
+    <label>kullanıcılar</label>
+    <select id="user"title="kullanıcılar">
         
         @foreach(var item in Model)
     {
@@ -16,22 +17,106 @@
         @item.Name
         </option>
     }
-    </select><br />
+    </select>
+    <label>ürün durumu</label>
+    <select id="status" title="ürün durumu">
+            <option value="0">
+                sepetteki ürünler
+            </option>
+        <option value="1">
+            aktif siparişler
+        </option>
+        <option value="2">
+            teslim edilmiş siparişler
+        </option>
+        
+    </select><br/>
+
+    <span id ="selectDate">
+    <label>başlangıç tarihi</label>
+        <input id="startDate" type="date" title="başlangıç" />
+    <label>bitiş tarihi</label>
+        <input id="endDate" type="date" title="bitiş" />
+    </span>
     <input type="button" value="filtrele" onclick="filterToOrder()" />
-      
 </div>
+@section Scripts{
+
 
 <script>
-    
+        var startDates = document.getElementById('startDate');
+        var endDates = document.getElementById('endDate');
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = ('0' + (today.getMonth() + 1)).slice(-2);
+        var day = ('0' + today.getDate()).slice(-2);
+        var formattedDate = year + '-' + month + '-' + day;
+        startDates.value = formattedDate;
+        endDates.value = formattedDate;
+        $(document).ready(function(){
+            $('#selectDate').on('change',function(){
+                alert("metoda geldi");
+
+                var startDate = new Date(document.getElementById('startDate').value);
+                var endDate = new Date(document.getElementById('endDate').value);
+                //var startDate = $('startDate').val();
+                //var endDate = $('endDate').val();as
+                console.log(startDate);
+                console.log(today);
+                //if(startDate>=today||endDate>=today)
+                //{
+                //    document.getElementById('startDate').value = formattedDate;
+                //    document.getElementById('endDate').value = formattedDate;
+                //    alert("verebileceğiniz en yakın tarih bugündür")
+                //    return;
+                //}
+                if (startDate > endDate) {
+                    
+                    alert("lütfen bitiş tarihini başlangıç tarihinden büyük seçiniz");
+                    document.getElementById('endDate').value = formattedDate;
+                    document.getElementById('startDate').value = formattedDate;
+                }
+                else{
+                    alert("koşul çalıştı");
+                    
+                }
+                
+            });
+        });
+    var param={
+            
+            beginTime:startDates.value,
+            endTime: endDates.value,
+            id: document.getElementById("user").value,
+            orderStatus:1
+    };
+        console.log(param);
     function filterToOrder() {
-        
-        var id = document.getElementById("user").value;
-        alert(id);
-        $.post("@Url.Action("filterUser","Users")/" + id, userToList, "json");
-       
+            param.id = document.getElementById("user").value;
+            param.beginTime = startDates.value;
+            param.endTime = endDates.value;
+            param.orderStatus = $('#status').val();
+        $.post("@Url.Action("filterUser","Users")",param, function(data){userToList(data);}, "json");
+       //$.ajax({
+       //         url: '@Url.Action("filterUser","Users")',
+       //         type:'POST',
+       //         dataType:'json',
+       //         data:id,
+       //         succes:function(response){
+       //             alert("post başarılı")
+       //             userToList(response);
+       //         },
+       //         error:function(xhr,status,error){
+       //             console.log("istek başarısız:"+error);
+       //         }
+
+       //});
 
     }
     function userToList(data){
         console.log(data);
+            console.log(param);
     }
+
 </script>
+}
