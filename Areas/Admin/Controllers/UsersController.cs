@@ -97,7 +97,8 @@ namespace OzSapkaTShirt.Areas.Admin.Controllers
         public ActionResult filterUser(FilterParam param)
         {
             //kullanıcıya ait tüm siparişleri listeler
-            var filterUser = _context.Orders.Where(o => o.UserId == param.id).Include(o => o.User).Include(o => o.OrderProducts).ToList();
+            var filterUser = _context.Orders.Where(o => o.UserId == param.id&&o.Status==param.orderStatus&&o.OrderDate<=param.endTime && o.OrderDate >= param.beginTime)
+                .Include(o => o.User).Include(o => o.OrderProducts).ThenInclude(o=>o.Product).ToList();
             return Json(filterUser);
         }
         public class FilterParam
